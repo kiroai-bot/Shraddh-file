@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
@@ -6,64 +6,65 @@
     <title>श्राद्ध के दौरान</title>
     <style>
         body {
-            font-family: 'Noto Sans Hindi', sans-serif; /* Added a Hindi-friendly font */
+            font-family: 'Noto Sans Hindi', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #000000; /* Black background */
-            color: #f0f0f0; /* Light text color for black background */
+            color: #f0f0f0; /* Light text color for contrast */
             line-height: 1.7;
             text-align: center;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Ensure full viewport height */
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            box-sizing: border-box;
         }
         .container {
-            max-width: 850px; /* Slightly wider container */
+            max-width: 850px;
             margin: 20px auto;
-            background-color: #222222; /* Darker container background */
-            padding: 30px 40px; /* More padding */
-            border-radius: 12px; /* Softer corners */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Stronger, darker shadow */
-            box-sizing: border-box; /* Include padding in width */
-            border: 1px solid #444444; /* Light border for contrast */
+            background-color: #1a1a1a; /* Darker container background */
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1); /* Lighter shadow for dark background */
+            box-sizing: border-box;
         }
         img {
             max-width: 100%;
             height: auto;
             display: block;
-            margin: 0 auto 25px auto; /* More space below image */
-            border-radius: 8px; /* Slightly rounded image corners */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin: 0 auto 25px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15); /* Lighter shadow for dark background */
         }
         .content {
             text-align: left;
-            margin-bottom: 35px; /* More space below content */
+            margin-bottom: 35px;
         }
         .intro-text {
-            font-size: 20px; /* Increased font size */
+            font-size: 20px;
             font-weight: bold;
-            color: #ff9900; /* Golden/orange for emphasis on black */
+            color: #ffcccc; /* Lighter red for emphasis on dark background */
             margin-bottom: 25px;
             text-align: center;
         }
         .red-blink-text {
-            color: #ff4d4d; /* Brighter red for black background */
+            color: #ff6666; /* Brighter red for blinking on dark background */
             font-weight: bold;
-            animation: blinker 1s linear infinite, shake-once 0.8s cubic-bezier(.36,.07,.19,.97) both; /* Blinker + Shake */
+            animation: blinker 1s linear infinite;
             margin-bottom: 20px;
             padding: 10px;
-            background-color: #3a0000; /* Dark red background for blinking section */
-            border-left: 5px solid #ff4d4d;
+            background-color: #330000; /* Darker background for blinking section */
+            border-left: 5px solid #ff6666;
             border-radius: 4px;
-            transform-origin: center;
         }
         .green-bold-text {
-            color: #66ff66; /* Brighter green for black background */
+            color: #66ff66; /* Brighter green for dark background */
             font-weight: bold;
             margin-top: 20px;
             padding: 10px;
-            background-color: #003a00; /* Dark green background for section */
+            background-color: #003300; /* Darker background for green section */
             border-left: 5px solid #66ff66;
             border-radius: 4px;
         }
@@ -75,26 +76,16 @@
             margin-bottom: 0;
         }
 
-        /* Keyframes for blinker animation */
         @keyframes blinker {
-            90% { opacity: 80%; }
-        }
-
-        /* Keyframes for shake-once animation */
-        @keyframes shake-once {
-            10%, 90% { transform: translate3d(-1px, 0, 0); }
-            20%, 80% { transform: translate3d(2px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-            40%, 60% { transform: translate3d(4px, 0, 0); }
-            100% { transform: translate3d(0, 0, 0); } /* Ensure it ends in original position */
+            50% { opacity: 0; }
         }
 
         .input-section {
             margin-bottom: 35px;
-            border: 1px solid #555555; /* Lighter border for contrast */
+            border: 1px solid #333333; /* Darker border */
             padding: 25px;
             border-radius: 10px;
-            background-color: #333333; /* Darker background */
+            background-color: #2a2a2a; /* Darker input section background */
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         .input-section label {
@@ -102,21 +93,21 @@
             margin-bottom: 12px;
             font-size: 1.2em;
             font-weight: bold;
-            color: #cccccc; /* Lighter color for label */
+            color: #cccccc; /* Lighter label color */
         }
         .input-section input[type="text"] {
-            width: calc(100% - 24px); /* Adjusted width for padding */
+            width: calc(100% - 24px);
             padding: 12px;
             margin-bottom: 18px;
-            border: 1px solid #777777; /* Lighter border */
+            border: 1px solid #555555; /* Darker input border */
             border-radius: 6px;
             font-size: 1.05em;
-            background-color: #444444; /* Dark input background */
-            color: #eeeeee; /* Light input text */
+            background-color: #3a3a3a; /* Dark input field */
+            color: #ffffff; /* White text in input */
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         .input-section button {
-            background-color: #8b0000; /* Dark red button for danger/warning */
+            background-color: #5d4037; /* Brown button */
             color: white;
             padding: 14px 25px;
             border: none;
@@ -124,83 +115,116 @@
             cursor: pointer;
             font-size: 1.15em;
             font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.1s ease;
+            transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.1s ease;
+            position: relative;
+            box-shadow: 0 4px 0 0 #3e2723; /* 3D effect base */
         }
         .input-section button:hover {
-            background-color: #b30000; /* Brighter red on hover */
+            background-color: #4e342e; /* Darker brown on hover */
             transform: translateY(-2px);
+            box-shadow: 0 6px 0 0 #3e2723; /* Lift effect */
         }
         .input-section button:active {
-            transform: translateY(0);
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 0 #3e2723; /* Press effect */
         }
-        #generatedLink, #newGeneratedLink {
+        #generatedLink {
             margin-top: 18px;
             font-weight: bold;
             word-break: break-all;
-            color: #00b3ff; /* Bright blue for links */
-            background-color: #002a4d;
+            color: #88ccff; /* Lighter blue for links */
+            background-color: #002244; /* Darker background for link display */
             padding: 8px;
             border-radius: 4px;
-            border: 1px dashed #0056b3;
+            border: 1px dashed #4488cc;
         }
 
         .share-buttons {
             margin-top: 35px;
             padding-top: 25px;
-            border-top: 1px solid #444444; /* Darker divider */
+            border-top: 1px solid #333333;
             display: flex;
-            flex-wrap: wrap; /* Allow wrapping on small screens */
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 15px; /* Space between buttons */
+            gap: 15px;
         }
         .share-buttons h3 {
             width: 100%;
             margin-bottom: 20px;
-            color: #cccccc; /* Lighter color for heading */
+            color: #cccccc;
         }
         .share-buttons a {
-            display: inline-flex; /* Use flexbox for vertical alignment of icon/text */
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin: 0; /* Removed fixed margin */
+            margin: 0;
             text-decoration: none;
             color: white;
             padding: 12px 18px;
             border-radius: 8px;
             font-weight: bold;
             font-size: 1em;
-            transition: opacity 0.3s ease, transform 0.1s ease;
-            min-width: 120px; /* Ensure buttons have minimum width */
+            transition: opacity 0.3s ease, transform 0.1s ease, box-shadow 0.1s ease;
+            min-width: 120px;
+            position: relative;
+            /* 3D effect for share buttons */
+            box-shadow: 0 4px 0 0 rgba(0,0,0,0.3);
         }
         .share-buttons a:hover {
             opacity: 0.9;
             transform: translateY(-2px);
+            box-shadow: 0 6px 0 0 rgba(0,0,0,0.3);
         }
         .share-buttons a:active {
-            transform: translateY(0);
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 0 rgba(0,0,0,0.3);
         }
-        .whatsapp { background-color: #25D366; }
-        .facebook { background-color: #1877F2; }
-        .telegram { background-color: #0088CC; }
-        .instagram { background-color: #E4405F; }
+        /* Specific 3D shadow colors for each button */
+        .whatsapp { background-color: #25D366; box-shadow: 0 4px 0 0 #1e9e4f; }
+        .whatsapp:hover { box-shadow: 0 6px 0 0 #1e9e4f; }
+        .whatsapp:active { box-shadow: 0 2px 0 0 #1e9e4f; }
+
+        .facebook { background-color: #1877F2; box-shadow: 0 4px 0 0 #145db3; }
+        .facebook:hover { box-shadow: 0 6px 0 0 #145db3; }
+        .facebook:active { box-shadow: 0 2px 0 0 #145db3; }
+
+        .telegram { background-color: #0088CC; box-shadow: 0 4px 0 0 #006699; }
+        .telegram:hover { box-shadow: 0 6px 0 0 #006699; }
+        .telegram:active { box-shadow: 0 2px 0 0 #006699; }
+
+        .instagram { background-color: #E4405F; box-shadow: 0 4px 0 0 #b32f4a; }
+        .instagram:hover { box-shadow: 0 6px 0 0 #b32f4a; }
+        .instagram:active { box-shadow: 0 2px 0 0 #b32f4a; }
 
         /* Animation for custom greeting */
+        .animated-greeting-box {
+            background-color: #3a3a3a; /* Dark background for greeting box */
+            color: #ffffff; /* White text for greeting box */
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+        }
         .animated-text {
-            font-size: 2.5em; /* Slightly adjusted for longer text */
-            color: #ffcc00; /* Golden color for warning on black */
+            font-size: 2.5em;
+            color: #ffcccc; /* Lighter red for serious tone */
             font-weight: bold;
-            margin-top: 40px;
-            margin-bottom: 20px;
+            margin-top: 0;
+            margin-bottom: 10px;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInScale 1.5s ease-out forwards;
             line-height: 1.3;
         }
-        .sender-name-animated {
-            font-size: 1.8em;
-            color: #eeeeee; /* Lighter color for sender's name */
+        .sender-info {
+            font-size: 1.5em;
+            color: #e0e0e0; /* Slightly off-white for sender info */
             margin-top: 10px;
-            animation: fadeInScale 1.8s ease-out forwards; /* Slightly delayed animation */
+            animation: fadeInScale 1.8s ease-out forwards;
+            opacity: 0;
+        }
+        .sender-info strong {
+            color: #ffffff; /* Pure white for sender name */
         }
 
         @keyframes fadeInScale {
@@ -214,10 +238,40 @@
             }
         }
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hindi:wght@400;700&display=swap');
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 10px auto;
+            }
+            .animated-text {
+                font-size: 1.8em;
+            }
+            .sender-info {
+                font-size: 1.2em;
+            }
+            .intro-text {
+                font-size: 16px;
+            }
+            .input-section input[type="text"],
+            .input-section button,
+            .share-buttons a {
+                font-size: 0.9em;
+                padding: 10px 15px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Animated greeting will appear at the top if 'name' is in URL -->
+        <div id="animated-greeting" class="animated-greeting-box" style="display: none;">
+            <p class="animated-text" id="greeting-main-text">2025 के श्राद्ध में ना करें ये गलतियाँ<br>नहीं तो हो जायेंगे कंगाल</p>
+            <p class="sender-info" id="greeting-sender-text"></p>
+        </div>
+
+        <!-- Main content always visible -->
         <div id="main-content">
             <!-- Replace 'your-image.gif' with the actual path to your GIF image -->
             <img src="your-image.gif" alt="श्राद्ध इमेज">
@@ -290,52 +344,31 @@
                 <a href="#" class="instagram" onclick="shareOnInstagram()">Instagram</a>
             </div>
         </div>
-
-        <div id="animated-greeting" style="display: none;">
-            <p class="animated-text" id="greeting-main-text">2025 के श्राद्ध में ना करें ये गलतियाँ<br>नहीं तो हो जायेंगे कंगाल</p>
-            <p class="animated-text sender-name-animated" id="greeting-sender-text"></p>
-            <div class="input-section" style="margin-top: 50px;">
-                <label for="newNameInput">अपना नाम लिखें:</label>
-                <input type="text" id="newNameInput" placeholder="जैसे: अंजू">
-                <button onclick="generateNewLink()">नई लिंक जनरेट करें</button>
-                <p id="newGeneratedLink" style="margin-top: 15px; font-weight: bold; word-break: break-all;"></p>
-            </div>
-            <div class="share-buttons">
-                <h3>यह लिंक शेयर करें:</h3>
-                <a href="#" class="whatsapp" onclick="shareOnWhatsApp(true)">WhatsApp</a>
-                <a href="#" class="facebook" onclick="shareOnFacebook(true)">Facebook</a>
-                <a href="#" class="telegram" onclick="shareOnTelegram(true)">Telegram</a>
-                <a href="#" class="instagram" onclick="shareOnInstagram(true)">Instagram</a>
-            </div>
-        </div>
     </div>
 
     <script>
         let senderName = "";
+        const defaultShareMessage = `2025 के श्राद्ध में ना करें ये गलतियाँ नहीं तो हो जायेंगे कंगाल!`;
 
-        // Function to get query parameters
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
 
-        // Check if a name is in the URL
         document.addEventListener('DOMContentLoaded', () => {
             const nameFromUrl = getQueryParam('name');
             if (nameFromUrl) {
                 senderName = decodeURIComponent(nameFromUrl);
-                document.getElementById('main-content').style.display = 'none';
+                // Show the animated greeting at the top
                 document.getElementById('animated-greeting').style.display = 'block';
-                document.getElementById('greeting-sender-text').textContent = `भेजा गया: ${senderName} द्वारा`; // Sender's name
-            } else {
-                // If it's the main page (not from shared link), ensure shake animation plays
-                const redBlinkText = document.querySelector('.red-blink-text');
-                if (redBlinkText) {
-                    // Re-apply animation to trigger it again if needed
-                    redBlinkText.style.animation = 'none';
-                    redBlinkText.offsetHeight; // Trigger reflow
-                    redBlinkText.style.animation = 'blinker 1s linear infinite, shake-once 0.8s cubic-bezier(.36,.07,.19,.97) both';
-                }
+                document.getElementById('greeting-sender-text').innerHTML = `आपका शुभ चिंत्तक: <strong>${senderName}</strong>`;
+                
+                // If a name is in the URL, pre-fill the input box with that name
+                // This allows the user to easily share it further without retyping
+                document.getElementById('nameInput').value = senderName;
+
+                // Also update the share message variables to reflect the incoming sender name for fresh shares
+                updateShareLinkAndMessage(senderName);
             }
         });
 
@@ -343,70 +376,95 @@
             const name = document.getElementById('nameInput').value.trim();
             if (name) {
                 senderName = name;
-                const baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-                const link = `${baseUrl}?name=${encodeURIComponent(name)}`;
-                document.getElementById('generatedLink').textContent = `आपकी लिंक: ${link}`;
+                updateShareLinkAndMessage(name);
             } else {
                 alert("कृपया अपना नाम दर्ज करें!");
             }
         }
 
-        function generateNewLink() {
-            const newName = document.getElementById('newNameInput').value.trim();
-            if (newName) {
-                const baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-                const link = `${baseUrl}?name=${encodeURIComponent(newName)}`;
-                document.getElementById('newGeneratedLink').textContent = `आपकी नई लिंक: ${link}`;
-            } else {
-                alert("कृपया अपना नाम दर्ज करें!");
-            }
-        }
-
-        function getShareableLink(isNewSender = false) {
-            let nameToUse = "";
-            if (isNewSender) {
-                nameToUse = document.getElementById('newNameInput').value.trim();
-                if (!nameToUse) {
-                    alert("कृपया अपना नाम दर्ज करें ताकि लिंक शेयर की जा सके!");
-                    return null;
-                }
-            } else {
-                nameToUse = senderName;
-                if (!nameToUse) {
-                    alert("कृपया पहले 'लिंक जनरेट करें' बटन पर क्लिक करके अपना नाम दर्ज करें!");
-                    return null;
-                }
-            }
+        function updateShareLinkAndMessage(currentSenderName) {
             const baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-            return `${baseUrl}?name=${encodeURIComponent(nameToUse)}`;
+            const link = `${baseUrl}?name=${encodeURIComponent(currentSenderName)}`;
+            document.getElementById('generatedLink').textContent = `आपकी लिंक: ${link}`;
+            
+            // Set data attributes on share buttons for easy access to link and sender
+            const shareButtons = document.querySelectorAll('.share-buttons a');
+            shareButtons.forEach(button => {
+                button.dataset.shareLink = link;
+                button.dataset.senderName = currentSenderName;
+            });
         }
 
-        function shareOnWhatsApp(isNewSender = false) {
-            const link = getShareableLink(isNewSender);
-            if (!link) return;
-            const message = `आपको ${decodeURIComponent(isNewSender ? document.getElementById('newNameInput').value.trim() : senderName)} की तरफ से "2025 के श्राद्ध में ना करें ये गलतियाँ नहीं तो हो जायेंगे कंगाल!"। यह देखें: ${link}`;
+        function getShareableLinkFromButton(button) {
+            return button.dataset.shareLink;
+        }
+
+        function getSenderNameFromButton(button) {
+            return button.dataset.senderName;
+        }
+
+        function shareOnWhatsApp(event) {
+            const button = event.currentTarget;
+            const link = getShareableLinkFromButton(button);
+            const currentSender = getSenderNameFromButton(button);
+
+            if (!link || !currentSender) {
+                alert("कृपया पहले अपना नाम दर्ज करके लिंक जनरेट करें!");
+                return;
+            }
+            const message = `${defaultShareMessage}\n\nआपका शुभ चिंत्तक: ${currentSender}\n\nयह देखें: ${link}`;
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        function shareOnFacebook(isNewSender = false) {
-            const link = getShareableLink(isNewSender);
-            if (!link) return;
-            const message = `आपको ${decodeURIComponent(isNewSender ? document.getElementById('newNameInput').value.trim() : senderName)} की तरफ से "2025 के श्राद्ध में ना करें ये गलतियाँ नहीं तो हो जायेंगे कंगाल!"`;
+        function shareOnFacebook(event) {
+            const button = event.currentTarget;
+            const link = getShareableLinkFromButton(button);
+            const currentSender = getSenderNameFromButton(button);
+
+            if (!link || !currentSender) {
+                alert("कृपया पहले अपना नाम दर्ज करके लिंक जनरेट करें!");
+                return;
+            }
+            const message = `${defaultShareMessage}\n\nआपका शुभ चिंत्तक: ${currentSender}`;
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}&quote=${encodeURIComponent(message)}`, '_blank');
         }
 
-        function shareOnTelegram(isNewSender = false) {
-            const link = getShareableLink(isNewSender);
-            if (!link) return;
-            const message = `आपको ${decodeURIComponent(isNewSender ? document.getElementById('newNameInput').value.trim() : senderName)} की तरफ से "2025 के श्राद्ध में ना करें ये गलतियाँ नहीं तो हो जायेंगे कंगाल!"। यह देखें:`;
+        function shareOnTelegram(event) {
+            const button = event.currentTarget;
+            const link = getShareableLinkFromButton(button);
+            const currentSender = getSenderNameFromButton(button);
+
+            if (!link || !currentSender) {
+                alert("कृपया पहले अपना नाम दर्ज करके लिंक जनरेट करें!");
+                return;
+            }
+            const message = `${defaultShareMessage}\n\nआपका शुभ चिंत्तक: ${currentSender}\n\nयह देखें:`;
             window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        function shareOnInstagram(isNewSender = false) {
-            const link = getShareableLink(isNewSender);
-            if (!link) return;
-            alert(`Instagram पर शेयर करने के लिए, इस लिंक को कॉपी करें और अपनी स्टोरी या पोस्ट में पेस्ट करें:\n\n${link}\n\nआप मैसेज में "आपको ${decodeURIComponent(isNewSender ? document.getElementById('newNameInput').value.trim() : senderName)} की तरफ से "2025 के श्राद्ध में ना करें ये गलतियाँ नहीं तो हो जायेंगे कंगाल!"" भी लिख सकते हैं।`);
+        function shareOnInstagram(event) {
+            const button = event.currentTarget;
+            const link = getShareableLinkFromButton(button);
+            const currentSender = getSenderNameFromButton(button);
+
+            if (!link || !currentSender) {
+                alert("कृपया पहले अपना नाम दर्ज करके लिंक जनरेट करें!");
+                return;
+            }
+            alert(`Instagram पर शेयर करने के लिए, इस लिंक को कॉपी करें और अपनी स्टोरी या पोस्ट में पेस्ट करें:\n\n${link}\n\nआप मैसेज में "${defaultShareMessage}\n\nआपका शुभ चिंत्तक: ${currentSender}" भी लिख सकते हैं।`);
         }
+
+        // Attach event listeners after DOM is loaded
+        document.querySelectorAll('.share-buttons a').forEach(button => {
+            button.addEventListener('click', function(event) {
+                const platform = button.className; // e.g., 'whatsapp', 'facebook'
+                if (platform.includes('whatsapp')) shareOnWhatsApp(event);
+                else if (platform.includes('facebook')) shareOnFacebook(event);
+                else if (platform.includes('telegram')) shareOnTelegram(event);
+                else if (platform.includes('instagram')) shareOnInstagram(event);
+            });
+        });
+
     </script>
 </body>
-</html>
+     </html>
