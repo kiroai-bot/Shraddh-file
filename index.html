@@ -179,37 +179,27 @@
             transform: translateY(2px);
             box-shadow: 0 2px 0 0 rgba(0,0,0,0.3);
         }
-        /* Specific 3D shadow colors for each button */
-        .whatsapp { background-color: #25D366; box-shadow: 0 4px 0 0 #1e9e4f; }
-        .whatsapp:hover { box-shadow: 0 6px 0 0 #1e9e4f; }
-        .whatsapp:active { box-shadow: 0 2px 0 0 #1e9e4f; }
-
-        .facebook { background-color: #1877F2; box-shadow: 0 4px 0 0 #145db3; }
-        .facebook:hover { box-shadow: 0 6px 0 0 #145db3; }
-        .facebook:active { box-shadow: 0 2px 0 0 #145db3; }
-
-        .telegram { background-color: #0088CC; box-shadow: 0 4px 0 0 #006699; }
-        .telegram:hover { box-shadow: 0 6px 0 0 #006699; }
-        .telegram:active { box-shadow: 0 2px 0 0 #006699; }
-
-        .instagram { background-color: #E4405F; box-shadow: 0 4px 0 0 #b32f4a; }
-        .instagram:hover { box-shadow: 0 6px 0 0 #b32f4a; }
-        .instagram:active { box-shadow: 0 2px 0 0 #b32f4a; }
+        .share-buttons a:active {
+            transform: translateY(0);
+        }
+        .whatsapp { background-color: #25D366; }
+        .facebook { background-color: #1877F2; }
+        .telegram { background-color: #0088CC; }
+        .instagram { background-color: #E4405F; }
 
         /* Animation for custom greeting */
         .animated-greeting-box {
-            background-color: #3a3a3a; /* Dark background for greeting box */
-            color: #ffffff; /* White text for greeting box */
+            background-color: #fff8e1; /* Light yellow background for greeting box */
             padding: 25px;
             border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+            margin-bottom: 30px; /* Space below greeting */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         .animated-text {
             font-size: 2.5em;
-            color: #ffcccc; /* Lighter red for serious tone */
+            color: #8b0000;
             font-weight: bold;
-            margin-top: 0;
+            margin-top: 0; /* Adjusted margin */
             margin-bottom: 10px;
             opacity: 0;
             transform: translateY(20px);
@@ -217,14 +207,14 @@
             line-height: 1.3;
         }
         .sender-info {
-            font-size: 1.5em;
-            color: #e0e0e0; /* Slightly off-white for sender info */
+            font-size: 1.5em; /* Adjusted font size for sender info */
+            color: #333;
             margin-top: 10px;
             animation: fadeInScale 1.8s ease-out forwards;
             opacity: 0;
         }
         .sender-info strong {
-            color: #ffffff; /* Pure white for sender name */
+            color: #5d4037; /* Color for sender name */
         }
 
         @keyframes fadeInScale {
@@ -272,7 +262,7 @@
         </div>
 
         <!-- Main content always visible -->
-        <div id="main-content">
+        <!-- No need for main-content div as we removed the toggle -->
             <!-- Replace 'your-image.gif' with the actual path to your GIF image -->
             <img src="your-image.gif" alt="श्राद्ध इमेज">
 
@@ -343,12 +333,10 @@
                 <a href="#" class="telegram" onclick="shareOnTelegram()">Telegram</a>
                 <a href="#" class="instagram" onclick="shareOnInstagram()">Instagram</a>
             </div>
-        </div>
     </div>
 
     <script>
-        let senderName = "";
-        const defaultShareMessage = `2025 के श्राद्ध में ना करें ये गलतियाँ नहीं तो हो जायेंगे कंगाल!`;
+        let senderName = ""; // This will store the name from the current user, not from the URL
 
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -358,113 +346,84 @@
         document.addEventListener('DOMContentLoaded', () => {
             const nameFromUrl = getQueryParam('name');
             if (nameFromUrl) {
-                senderName = decodeURIComponent(nameFromUrl);
-                // Show the animated greeting at the top
+                // Only display the animated greeting and sender info
                 document.getElementById('animated-greeting').style.display = 'block';
-                document.getElementById('greeting-sender-text').innerHTML = `आपका शुभ चिंत्तक: <strong>${senderName}</strong>`;
+                document.getElementById('greeting-sender-text').innerHTML = `आपका शुभ चिंत्तक: <strong>${decodeURIComponent(nameFromUrl)}</strong>`;
                 
-                // If a name is in the URL, pre-fill the input box with that name
-                // This allows the user to easily share it further without retyping
-                document.getElementById('nameInput').value = senderName;
-
-                // Also update the share message variables to reflect the incoming sender name for fresh shares
-                updateShareLinkAndMessage(senderName);
+                // Ensure the input field and generated link are clear for the new user
+                document.getElementById('nameInput').value = '';
+                document.getElementById('generatedLink').textContent = '';
+            } else {
+                // If no name in URL, ensure greeting is hidden
+                document.getElementById('animated-greeting').style.display = 'none';
             }
         });
+
+        const defaultShareTitle = "2025 के श्राद्ध में ना करें ये गलतियाँ नहीं तो हो जायेंगे कंगाल!";
 
         function generateLink() {
             const name = document.getElementById('nameInput').value.trim();
             if (name) {
-                senderName = name;
-                updateShareLinkAndMessage(name);
+                // Set senderName for current session sharing
+                senderName = name; 
+                const baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                const link = `${baseUrl}?name=${encodeURIComponent(name)}`;
+                document.getElementById('generatedLink').textContent = `आपकी लिंक: ${link}`;
             } else {
                 alert("कृपया अपना नाम दर्ज करें!");
             }
         }
 
-        function updateShareLinkAndMessage(currentSenderName) {
-            const baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-            const link = `${baseUrl}?name=${encodeURIComponent(currentSenderName)}`;
-            document.getElementById('generatedLink').textContent = `आपकी लिंक: ${link}`;
-            
-            // Set data attributes on share buttons for easy access to link and sender
-            const shareButtons = document.querySelectorAll('.share-buttons a');
-            shareButtons.forEach(button => {
-                button.dataset.shareLink = link;
-                button.dataset.senderName = currentSenderName;
-            });
-        }
-
-        function getShareableLinkFromButton(button) {
-            return button.dataset.shareLink;
-        }
-
-        function getSenderNameFromButton(button) {
-            return button.dataset.senderName;
-        }
-
-        function shareOnWhatsApp(event) {
-            const button = event.currentTarget;
-            const link = getShareableLinkFromButton(button);
-            const currentSender = getSenderNameFromButton(button);
-
-            if (!link || !currentSender) {
-                alert("कृपया पहले अपना नाम दर्ज करके लिंक जनरेट करें!");
-                return;
+        function getShareableLink() { // Removed isNewSender parameter, as there's only one input now
+            const currentSenderName = document.getElementById('nameInput').value.trim();
+            if (!currentSenderName) {
+                alert("कृपया अपना नाम दर्ज करें ताकि लिंक शेयर की जा सके!");
+                return null;
             }
-            const message = `${defaultShareMessage}\n\nआपका शुभ चिंत्तक: ${currentSender}\n\nयह देखें: ${link}`;
+            const baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            return `${baseUrl}?name=${encodeURIComponent(currentSenderName)}`;
+        }
+
+        function shareOnWhatsApp() {
+            const link = getShareableLink();
+            if (!link) return;
+            const currentSenderName = document.getElementById('nameInput').value.trim();
+            const message = `${defaultShareTitle}\n\nआपका शुभ चिंत्तक: ${currentSenderName}\n\nयह देखें: ${link}`;
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        function shareOnFacebook(event) {
-            const button = event.currentTarget;
-            const link = getShareableLinkFromButton(button);
-            const currentSender = getSenderNameFromButton(button);
-
-            if (!link || !currentSender) {
-                alert("कृपया पहले अपना नाम दर्ज करके लिंक जनरेट करें!");
-                return;
-            }
-            const message = `${defaultShareMessage}\n\nआपका शुभ चिंत्तक: ${currentSender}`;
+        function shareOnFacebook() {
+            const link = getShareableLink();
+            if (!link) return;
+            const currentSenderName = document.getElementById('nameInput').value.trim();
+            const message = `${defaultShareTitle}\n\nआपका शुभ चिंत्तक: ${currentSenderName}`;
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}&quote=${encodeURIComponent(message)}`, '_blank');
         }
 
-        function shareOnTelegram(event) {
-            const button = event.currentTarget;
-            const link = getShareableLinkFromButton(button);
-            const currentSender = getSenderNameFromButton(button);
-
-            if (!link || !currentSender) {
-                alert("कृपया पहले अपना नाम दर्ज करके लिंक जनरेट करें!");
-                return;
-            }
-            const message = `${defaultShareMessage}\n\nआपका शुभ चिंत्तक: ${currentSender}\n\nयह देखें:`;
+        function shareOnTelegram() {
+            const link = getShareableLink();
+            if (!link) return;
+            const currentSenderName = document.getElementById('nameInput').value.trim();
+            const message = `${defaultShareTitle}\n\nआपका शुभ चिंत्तक: ${currentSenderName}\n\nयह देखें:`;
             window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        function shareOnInstagram(event) {
-            const button = event.currentTarget;
-            const link = getShareableLinkFromButton(button);
-            const currentSender = getSenderNameFromButton(button);
-
-            if (!link || !currentSender) {
-                alert("कृपया पहले अपना नाम दर्ज करके लिंक जनरेट करें!");
-                return;
-            }
-            alert(`Instagram पर शेयर करने के लिए, इस लिंक को कॉपी करें और अपनी स्टोरी या पोस्ट में पेस्ट करें:\n\n${link}\n\nआप मैसेज में "${defaultShareMessage}\n\nआपका शुभ चिंत्तक: ${currentSender}" भी लिख सकते हैं।`);
+        function shareOnInstagram() {
+            const link = getShareableLink();
+            if (!link) return;
+            const currentSenderName = document.getElementById('nameInput').value.trim();
+            alert(`Instagram पर शेयर करने के लिए, इस लिंक को कॉपी करें और अपनी स्टोरी या पोस्ट में पेस्ट करें:\n\n${link}\n\nआप मैसेज में "${defaultShareTitle}\n\nआपका शुभ चिंत्तक: ${currentSenderName}" भी लिख सकते हैं।`);
         }
-
-        // Attach event listeners after DOM is loaded
-        document.querySelectorAll('.share-buttons a').forEach(button => {
-            button.addEventListener('click', function(event) {
-                const platform = button.className; // e.g., 'whatsapp', 'facebook'
-                if (platform.includes('whatsapp')) shareOnWhatsApp(event);
-                else if (platform.includes('facebook')) shareOnFacebook(event);
-                else if (platform.includes('telegram')) shareOnTelegram(event);
-                else if (platform.includes('instagram')) shareOnInstagram(event);
-            });
-        });
-
     </script>
 </body>
-     </html>
+</html>
+<script type="text/javascript">
+	atOptions = {
+		'key' : '3921c75ec289fb5f8e7241bf617666c0',
+		'format' : 'iframe',
+		'height' : 60,
+		'width' : 468,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/3921c75ec289fb5f8e7241bf617666c0/invoke.js"></script>
