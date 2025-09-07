@@ -1,0 +1,412 @@
+ <!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>श्राद्ध के दौरान</title>
+    <style>
+        body {
+            font-family: 'Noto Sans Hindi', sans-serif; /* Added a Hindi-friendly font */
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Black background */
+            color: #f0f0f0; /* Light text color for black background */
+            line-height: 1.7;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure full viewport height */
+        }
+        .container {
+            max-width: 850px; /* Slightly wider container */
+            margin: 20px auto;
+            background-color: #222222; /* Darker container background */
+            padding: 30px 40px; /* More padding */
+            border-radius: 12px; /* Softer corners */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Stronger, darker shadow */
+            box-sizing: border-box; /* Include padding in width */
+            border: 1px solid #444444; /* Light border for contrast */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 25px auto; /* More space below image */
+            border-radius: 8px; /* Slightly rounded image corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .content {
+            text-align: left;
+            margin-bottom: 35px; /* More space below content */
+        }
+        .intro-text {
+            font-size: 20px; /* Increased font size */
+            font-weight: bold;
+            color: #ff9900; /* Golden/orange for emphasis on black */
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .red-blink-text {
+            color: #ff4d4d; /* Brighter red for black background */
+            font-weight: bold;
+            animation: blinker 1s linear infinite, shake-once 0.8s cubic-bezier(.36,.07,.19,.97) both; /* Blinker + Shake */
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #3a0000; /* Dark red background for blinking section */
+            border-left: 5px solid #ff4d4d;
+            border-radius: 4px;
+            transform-origin: center;
+        }
+        .green-bold-text {
+            color: #66ff66; /* Brighter green for black background */
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #003a00; /* Dark green background for section */
+            border-left: 5px solid #66ff66;
+            border-radius: 4px;
+        }
+        .red-blink-text p, .green-bold-text p {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .red-blink-text p:last-child, .green-bold-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Keyframes for blinker animation */
+        @keyframes blinker {
+            90% { opacity: 80%; }
+        }
+
+        /* Keyframes for shake-once animation */
+        @keyframes shake-once {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+            100% { transform: translate3d(0, 0, 0); } /* Ensure it ends in original position */
+        }
+
+        .input-section {
+            margin-bottom: 35px;
+            border: 1px solid #555555; /* Lighter border for contrast */
+            padding: 25px;
+            border-radius: 10px;
+            background-color: #333333; /* Darker background */
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        .input-section label {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #cccccc; /* Lighter color for label */
+        }
+        .input-section input[type="text"] {
+            width: calc(100% - 24px); /* Adjusted width for padding */
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #777777; /* Lighter border */
+            border-radius: 6px;
+            font-size: 1.05em;
+            background-color: #444444; /* Dark input background */
+            color: #eeeeee; /* Light input text */
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        .input-section button {
+            background-color: #8b0000; /* Dark red button for danger/warning */
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.15em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+        .input-section button:hover {
+            background-color: #b30000; /* Brighter red on hover */
+            transform: translateY(-2px);
+        }
+        .input-section button:active {
+            transform: translateY(0);
+        }
+        #generatedLink, #newGeneratedLink {
+            margin-top: 18px;
+            font-weight: bold;
+            word-break: break-all;
+            color: #00b3ff; /* Bright blue for links */
+            background-color: #002a4d;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px dashed #0056b3;
+        }
+
+        .share-buttons {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid #444444; /* Darker divider */
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            justify-content: center;
+            gap: 15px; /* Space between buttons */
+        }
+        .share-buttons h3 {
+            width: 100%;
+            margin-bottom: 20px;
+            color: #cccccc; /* Lighter color for heading */
+        }
+        .share-buttons a {
+            display: inline-flex; /* Use flexbox for vertical alignment of icon/text */
+            align-items: center;
+            justify-content: center;
+            margin: 0; /* Removed fixed margin */
+            text-decoration: none;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1em;
+            transition: opacity 0.3s ease, transform 0.1s ease;
+            min-width: 120px; /* Ensure buttons have minimum width */
+        }
+        .share-buttons a:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .share-buttons a:active {
+            transform: translateY(0);
+        }
+        .whatsapp { background-color: #25D366; }
+        .facebook { background-color: #1877F2; }
+        .telegram { background-color: #0088CC; }
+        .instagram { background-color: #E4405F; }
+
+        /* Animation for custom greeting */
+        .animated-text {
+            font-size: 2.5em; /* Slightly adjusted for longer text */
+            color: #ffcc00; /* Golden color for warning on black */
+            font-weight: bold;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInScale 1.5s ease-out forwards;
+            line-height: 1.3;
+        }
+        .sender-name-animated {
+            font-size: 1.8em;
+            color: #eeeeee; /* Lighter color for sender's name */
+            margin-top: 10px;
+            animation: fadeInScale 1.8s ease-out forwards; /* Slightly delayed animation */
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hindi:wght@400;700&display=swap');
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="main-content">
+            <!-- Replace 'your-image.gif' with the actual path to your GIF image -->
+            <img src="your-image.gif" alt="श्राद्ध इमेज">
+
+            <div class="content">
+                <p class="intro-text">श्राद्ध के दौरान, पितरों के प्रति आदर व्यक्त करने के लिए कुछ कार्यों से बचना चाहिए और कुछ कार्य करने चाहिए.</p>
+
+                <div class="red-blink-text">
+                    <p><strong>क्या न करें (वर्जित कार्य)</strong></p>
+                    <p><strong>शुभ कार्य न करें:</strong><br>
+                    विवाह, मुंडन, गृह प्रवेश जैसे कोई भी मांगलिक या शुभ कार्य नहीं करने चाहिए.</p>
+
+                    <p><strong>तामसिक भोजन न करें:</strong><br>
+                    मांस, शराब, प्याज, लहसुन, बैंगन, सरसों का साग, मसूर की दाल आदि का सेवन बिल्कुल न करें.</p>
+
+                    <p><strong>बाल-नाखून न काटें:</strong><br>
+                    मान्यताओं के अनुसार, इन दिनों में बाल कटवाने, नाखून काटने या शेविंग करने से बचना चाहिए.</p>
+
+                    <p><strong>नशीले पदार्थों से बचें:</strong><br>
+                    किसी भी तरह के नशीले पदार्थों का सेवन न करें.</p>
+
+                    <p><strong>अशुभ वस्तुएँ न खरीदें:</strong><br>
+                    नई चीजें, जैसे सोना, चांदी या कृत्रिम आभूषण नहीं खरीदने चाहिए.</p>
+
+                    <p><strong>काला रंग का प्रयोग न करें:</strong><br>
+                    काले रंग के वस्त्र पहनने, दान करने या किसी भी अनुष्ठान में काले रंग का उपयोग करने से बचें.</p>
+
+                    <p><strong>तेल की मालिश न करें:</strong><br>
+                    इन दिनों में शरीर पर तेल लगाना या तेल से मालिश करना वर्जित है.</p>
+                </div>
+
+                <div class="green-bold-text">
+                    <p><strong>क्या करें (क्या करें)</strong></p>
+
+                    <p><strong>पितरों को तर्पण और पिंडदान करें:</strong><br>
+                    यह पूर्वजों की आत्मा की शांति के लिए किया जाता है और उन्हें तृप्त करता है.</p>
+
+                    <p><strong>दान करें:</strong><br>
+                    ब्राह्मणों को भोजन, वस्त्र और अन्य वस्तुएँ दान करें. गाय का दान करना श्रेष्ठ माना जाता है.</p>
+
+                    <p><strong>पसंदीदा भोजन परोसें:</strong><br>
+                    अपने पितरों को उनके पसंदीदा व्यंजन अर्पित करें.</p>
+
+                    <p><strong>सात्विक और शुद्ध भोजन ग्रहण करें:</strong><br>
+                    भोजन सात्विक होना चाहिए और लोहे के बर्तनों में पकाए गए भोजन से बचें. पीतल, तांबा या अन्य धातु के बर्तनों का प्रयोग करें.</p>
+
+                    <p><strong>पीपल के पेड़ की पूजा करें:</strong><br>
+                    कुछ मान्यताओं के अनुसार, पीपल के पेड़ की पूजा करने से पितरों को शांति मिलती है.</p>
+
+                    <p><strong>अन्नदान करें:</strong><br>
+                    गेहूं, चावल या अन्य अनाज का दान करना भी शुभ माना जाता है.</p>
+
+                    <p><strong>घर में सात्विक वातावरण बनाए रखें:</strong><br>
+                    घर में क्रोध, कलह या जल्दबाजी नहीं करनी चाहिए. शांत और सात्विक वातावरण बनाए रखना महत्वपूर्ण है.</p>
+                </div>
+            </div>
+
+            <div class="input-section">
+                <label for="nameInput">अपना नाम लिखें:</label>
+                <input type="text" id="nameInput" placeholder="जैसे: रोहित">
+                <button onclick="generateLink()">लिंक जनरेट करें</button>
+                <p id="generatedLink" style="margin-top: 15px; font-weight: bold; word-break: break-all;"></p>
+            </div>
+
+            <div class="share-buttons">
+                <h3>यह लिंक शेयर करें:</h3>
+                <a href="#" class="whatsapp" onclick="shareOnWhatsApp()">WhatsApp</a>
+                <a href="#" class="facebook" onclick="shareOnFacebook()">Facebook</a>
+                <a href="#" class="telegram" onclick="shareOnTelegram()">Telegram</a>
+                <a href="#" class="instagram" onclick="shareOnInstagram()">Instagram</a>
+            </div>
+        </div>
+
+        <div id="animated-greeting" style="display: none;">
+            <p class="animated-text" id="greeting-main-text">2025 के श्राद्ध में ना करें ये गलतियाँ<br>नहीं तो हो जायेंगे कंगाल</p>
+            <p class="animated-text sender-name-animated" id="greeting-sender-text"></p>
+            <div class="input-section" style="margin-top: 50px;">
+                <label for="newNameInput">अपना नाम लिखें:</label>
+                <input type="text" id="newNameInput" placeholder="जैसे: अंजू">
+                <button onclick="generateNewLink()">नई लिंक जनरेट करें</button>
+                <p id="newGeneratedLink" style="margin-top: 15px; font-weight: bold; word-break: break-all;"></p>
+            </div>
+            <div class="share-buttons">
+                <h3>यह लिंक शेयर करें:</h3>
+                <a href="#" class="whatsapp" onclick="shareOnWhatsApp(true)">WhatsApp</a>
+                <a href="#" class="facebook" onclick="shareOnFacebook(true)">Facebook</a>
+                <a href="#" class="telegram" onclick="shareOnTelegram(true)">Telegram</a>
+                <a href="#" class="instagram" onclick="shareOnInstagram(true)">Instagram</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let senderName = "";
+
+        // Function to get query parameters
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Check if a name is in the URL
+        document.addEventListener('DOMContentLoaded', () => {
+            const nameFromUrl = getQueryParam('name');
+            if (nameFromUrl) {
+                senderName = decodeURIComponent(nameFromUrl);
+                document.getElementById('main-content').style.display = 'none';
+                document.getElementById('animated-greeting').style.display = 'block';
+                document.getElementById('greeting-sender-text').textContent = `भेजा गया: ${senderName} द्वारा`; // Sender's name
+            } else {
+                // If it's the main page (not from shared link), ensure shake animation plays
+                const redBlinkText = document.querySelector('.red-blink-text');
+                if (redBlinkText) {
+                    // Re-apply animation to trigger it again if needed
+                    redBlinkText.style.animation = 'none';
+                    redBlinkText.offsetHeight; // Trigger reflow
+                    redBlinkText.style.animation = 'blinker 1s linear infinite, shake-once 0.8s cubic-bezier(.36,.07,.19,.97) both';
+                }
+            }
+        });
+
+        function generateLink() {
+            const name = document.getElementById('nameInput').value.trim();
+            if (name) {
+                senderName = name;
+                const baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                const link = `${baseUrl}?name=${encodeURIComponent(name)}`;
+                document.getElementById('generatedLink').textContent = `आपकी लिंक: ${link}`;
+            } else {
+                alert("कृपया अपना नाम दर्ज करें!");
+            }
+        }
+
+        function generateNewLink() {
+            const newName = document.getElementById('newNameInput').value.trim();
+            if (newName) {
+                const baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                const link = `${baseUrl}?name=${encodeURIComponent(newName)}`;
+                document.getElementById('newGeneratedLink').textContent = `आपकी नई लिंक: ${link}`;
+            } else {
+                alert("कृपया अपना नाम दर्ज करें!");
+            }
+        }
+
+        function getShareableLink(isNewSender = false) {
+            let nameToUse = "";
+            if (isNewSender) {
+                nameToUse = document.getElementById('newNameInput').value.trim();
+                if (!nameToUse) {
+                    alert("कृपया अपना नाम दर्ज करें ताकि लिंक शेयर की जा सके!");
+                    return null;
+                }
+            } else {
+                nameToUse = senderName;
+                if (!nameToUse) {
+                    alert("कृपया पहले 'लिंक जनरेट करें' बटन पर क्लिक करके अपना नाम दर्ज करें!");
+                    return null;
+                }
+            }
+            const baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            return `${baseUrl}?name=${encodeURIComponent(nameToUse)}`;
+        }
+
+        function shareOnWhatsApp(isNewSender = false) {
+            const link = getShareableLink(isNewSender);
+            if (!link) return;
+            const message = `आपको ${decodeURIComponent(isNewSender ? document.getElementById('newNameInput').value.trim() : senderName)} की तरफ से "2025 के श्राद्ध में ना करें ये गलतियाँ नहीं तो हो जायेंगे कंगाल!"। यह देखें: ${link}`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function shareOnFacebook(isNewSender = false) {
+            const link = getShareableLink(isNewSender);
+            if (!link) return;
+            const message = `आपको ${decodeURIComponent(isNewSender ? document.getElementById('newNameInput').value.trim() : senderName)} की तरफ से "2025 के श्राद्ध में ना करें ये गलतियाँ नहीं तो हो जायेंगे कंगाल!"`;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}&quote=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function shareOnTelegram(isNewSender = false) {
+            const link = getShareableLink(isNewSender);
+            if (!link) return;
+            const message = `आपको ${decodeURIComponent(isNewSender ? document.getElementById('newNameInput').value.trim() : senderName)} की तरफ से "2025 के श्राद्ध में ना करें ये गलतियाँ नहीं तो हो जायेंगे कंगाल!"। यह देखें:`;
+            window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function shareOnInstagram(isNewSender = false) {
+            const link = getShareableLink(isNewSender);
+            if (!link) return;
+            alert(`Instagram पर शेयर करने के लिए, इस लिंक को कॉपी करें और अपनी स्टोरी या पोस्ट में पेस्ट करें:\n\n${link}\n\nआप मैसेज में "आपको ${decodeURIComponent(isNewSender ? document.getElementById('newNameInput').value.trim() : senderName)} की तरफ से "2025 के श्राद्ध में ना करें ये गलतियाँ नहीं तो हो जायेंगे कंगाल!"" भी लिख सकते हैं।`);
+        }
+    </script>
+</body>
+</html>
